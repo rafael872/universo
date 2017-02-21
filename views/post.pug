@@ -1,0 +1,100 @@
+extends layout
+block contenido
+	.container
+		.row#post(style="margin-top:92px")
+			.col-md-4.col-md-offset-8.no-pg
+				.back-grid-slider-post
+					.grid-slider-post
+						.row
+							.col-md-4
+								.grid-tumb-post
+							.col-md-4
+								.grid-tumb-post
+							.col-md-4
+								.grid-tumb-post
+						.row
+							.col-md-4
+								.grid-tumb-post
+							.col-md-4
+								.grid-tumb-post
+							.col-md-4
+								.grid-tumb-post
+						.row
+							.col-md-12.type.no-mg
+								p.no-mg.font-white.text-capitalize #{post_unique.categoria} 
+									span.text-lowercase en 
+									| #{post_unique.tipo}
+						.row
+							.col-md-12.price.no-mg
+								p.no-mg.font-white Bs. #{post_unique.precio}
+						.row
+							.col-md-12.no-mg
+								p.no-mg.font-white.pLeft-15(style="line-height: 1.464947") Baños: #{post_unique.banos}
+						.row
+							.col-md-12.no-mg
+								p.no-mg.font-white.pLeft-15(style="line-height: 1.464947") Habitaciones: #{post_unique.habitaciones}
+						.row
+							.col-md-12.no-mg
+								p.no-mg.font-white.pLeft-15(style="line-height: 1.464947") 
+									|Metros
+									sup 2
+									|: #{post_unique.m_terreno}
+						.row
+							.col-md-12
+								a(href="/contact" class="btn-contact-post") Contactar
+		.row.mBottom-20
+			.col-md-12
+				h1.text-center Ubicación
+				p.text-center 
+					span.text-capitalize.font-18 #{post_unique.urbanizacion}, 
+					| #{post_unique.municipio}, #{post_unique.estado}
+		.row.mBottom-20
+			.col-md-12
+				h1.text-center Descripción
+				.row
+					.col-md-6.col-md-offset-3
+						.row(style="padding-left: 60px")
+							.col-md-6
+								p.no-mg.font-18 Categoría: 
+									span.text-capitalize.font-open-light.font-18 #{post_unique.categoria}
+								p.no-mg.font-18 Operación: 
+									span.text-capitalize.font-open-light.font-18 #{post_unique.tipo}
+								p.no-mg.font-18 Baños: 
+									span.text-capitalize.font-open-light.font-18 #{post_unique.banos}
+								p.no-mg.font-18 Baños de servicio: 
+									span.text-capitalize.font-open-light.font-18 #{post_unique.banos_serv}
+								p.no-mg.font-18 Habitaciones: 
+									span.text-capitalize.font-open-light.font-18 #{post_unique.habitaciones}
+							.col-md-6
+								p.no-mg.font-18 Hab. de servicio: 
+									span.text-capitalize.font-open-light.font-18 #{post_unique.h_serv}
+								p.no-mg.font-18 Estacionamientos: 
+									span.text-capitalize.font-open-light.font-18 #{post_unique.estacionamiento}
+								p.no-mg.font-18 Antigüedad: 
+									span.text-capitalize.font-open-light.font-18 #{post_unique.antiguedad} años
+								p.no-mg.font-18 Mts
+									sup 2 
+									| de construcción:  
+									span.text-capitalize.font-open-light.font-18 #{post_unique.banos_serv}
+								p.no-mg.font-18 Mts
+									sup 2 
+									| de terreno: 
+									span.text-capitalize.font-open-light.font-18 #{post_unique.habitaciones}
+		.row.mBottom-20
+			.col-md-12
+				h3.text-center.title-second-post Características adicionales
+				.row
+					.col-md-10.col-md-offset-1
+						.grid-list-aditionals
+							ul.font-open-light.font-18
+								li 
+									| #{post_unique.ln_tlf ? 'Línea telefónica:' : ''} 
+								li Aire acondicionado: #{post_unique.a_a}
+								li Pisos (cuartos): #{post_unique.pisos_cuartos}
+								li Pisos (áreas sociales): #{post_unique.pisos_sociales}
+								li
+									| #{post_unique.jardines ? 'Tiene jardín' : 'no hay'}
+
+				
+		
+

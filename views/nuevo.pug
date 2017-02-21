@@ -1,0 +1,474 @@
+extends api_layout
+block contenido  
+	.container      
+		section(id='seccion')
+			form(action="/api/post" method="post" id="subir" name="subir" )
+				div(class="flexGrid")
+					p(class="tlt-1") Publica un nuevo inmueble
+					p(class="sbt-3") Selecciona imagenes
+					div(ng-controller="MainController")
+						
+
+					
+                    div(class="contenerdor_img_subir") 
+                        img(class='addImg-med' id="output")
+                        input(type="file" class="input_file" form="subir" name="img1" accept="image/*"  onchange="loadFile(event)" required)
+                    div(class="contenerdor_img_subir")
+                        img(class='addImg-med' id="output_2")
+                        input(type="file" class="input_file" name="img2" accept="image/*" onchange="loadFile_2(event)")
+                    div(class="contenerdor_img_subir")
+                        img(class='addImg-med' id="output_3")
+                        input(type="file" class="input_file" name="img3" accept="image/*" onchange="loadFile_3(event)")
+                    div(class="contenerdor_img_subir")
+                        img(class='addImg-med' id="output_4")
+                        input(type="file" class="input_file" name="img4" accept="image/*" onchange="loadFile_4(event)")
+                    div(class="contenerdor_img_subir")
+                        img(class='addImg-med' id="output_5")
+                        input(type="file" class="input_file" name="img5" accept="image/*" onchange="loadFile_5(event)")
+                    div(class="contenerdor_img_subir")
+                        img(class='addImg-med' id="output_6")
+                        input(type="file" class="input_file" name="img6" accept="image/*" onchange="loadFile_6(event)")
+                    div(class="contenerdor_img_subir")
+                        img(class='addImg-med' id="output_7")
+                        input(type="file" class="input_file" name="img7" accept="image/*" onchange="loadFile_7(event)")
+                    div(class="contenerdor_img_subir" )
+                        img(class='addImg-med' id="output_8")
+                        input(type="file" class="input_file" name="img8" accept="image/*" onchange="loadFile_8(event)")
+                    script.
+                        var loadFile = function (event) {
+                            var output = document.getElementById('output');
+                            output.src = URL.createObjectURL(event.target.files[0]);
+                        };
+                        var loadFile_2 = function (event) {
+                            var output = document.getElementById('output_2');
+                            output.src = URL.createObjectURL(event.target.files[0]);
+                        };
+                        var loadFile_3 = function (event) {
+                            var output = document.getElementById('output_3');
+                            output.src = URL.createObjectURL(event.target.files[0]);
+                        };
+                        var loadFile_4 = function (event) {
+                            var output = document.getElementById('output_4');
+                            output.src = URL.createObjectURL(event.target.files[0]);
+                        };
+                        var loadFile_5 = function (event) {
+                            var output = document.getElementById('output_5');
+                            output.src = URL.createObjectURL(event.target.files[0]);
+                        };
+                        var loadFile_6 = function (event) {
+                            var output = document.getElementById('output_6');
+                            output.src = URL.createObjectURL(event.target.files[0]);
+                        };
+                        var loadFile_7 = function (event) {
+                            var output = document.getElementById('output_7');
+                            output.src = URL.createObjectURL(event.target.files[0]);
+                        };
+                        var loadFile_8 = function (event) {
+                            var output = document.getElementById('output_8');
+                            output.src = URL.createObjectURL(event.target.files[0]);
+                        }; 
+            
+				
+				div(class="flexGrid border")
+					div(class="flexGrid contenedor1 fullAncho")
+						p(class="sbt-3") Ubicación
+						table(class="items-nuevo")
+							
+							tr
+								td(style="width:136px;")
+									label(for="ubicacion") Ubicación
+								td
+									select(name="ubicacion" id="ubicacion" ng-model="selectedItem" ng-options="ubicacion.ciudadParroquia group by ubicacion.estado for ubicacion in ubicaciones | orderBy:['+ubicacion.estado','+ubicacion.ciudadParroquia']" required /)
+										option(value="" disabled="disabled") Seleccione ciudad o parroquia
+							tr
+								td(style="width:136px;")
+									label(for="estado") Estado
+									span(class="obligatorio") *
+								td
+									input(type="text" name="estado" required="true" id="estado" value="{{selectedItem.estado}}" readonly="readonly")
+							tr
+								td(style="width:136px;")
+									label(for="ciudad") Ciudad
+									span(class="obligatorio") *
+								td
+									input(type="text" name="ciudad" required="true" id="ciudad" value="{{selectedItem.ciudadParroquia}}" readonly="readonly")
+							tr
+								td(style="width:136px;")
+									label(for="municipio") Municipio
+									span(class="obligatorio") *
+								td
+									input(type="text" name="municipio" required="true" id="municipio" value="{{selectedItem.municipio}}" readonly="readonly")
+							tr
+								td(style="width:136px;")
+									label(for="urbanizacion") Urbanización
+									span(class="obligatorio") *
+								td
+									input(type="text" name="urbanizacion" required="true" id="urbanizacion")
+							tr
+								td(style="width:136px;")
+									label(for="precio") Precio
+									span(class="obligatorio") *
+								td
+									input(type="number" name="precio" required="true" id="precio")
+							
+
+					div(class="flexGrid contenedor1")
+						p(class="sbt-3") Características principales
+							
+							table(class="items-nuevo")
+								tr
+									td(style="width:150px;")
+										label(for="categoria" class="") Categoría
+										span(class="obligatorio") *
+									td
+										
+										select(name="categoria" required="true" class="f-rigth" id="categoria")
+											option(value="" selected="selected" disabled="disabled") Tipo
+											option(value="apartamento") Apartamento
+											option(value="casa") Casa
+											option(value="local") Local
+											option(value="terreno") Terreno
+											option(value="townhouse") Townhouse
+								tr     
+									td(style="width:150px;")
+										label(for="tipo") Tipo
+										span(class="obligatorio") *
+									td
+										
+										select(name="tipo" required="true"  id="tipo")
+											option(value="" selected="selected" disabled="disabled") Seleccione
+											option(value="alquiler") Alquiler
+											option(value="venta") Venta
+								tr
+									td(style="width:300px;")
+										label(for="baños") Baños
+										span(class="obligatorio") *
+									td
+
+										input(type="number"  required="true" name="baños" id="baños")
+								tr
+									td(style="width:300px;")
+										label(for="baños_serv" class="") Baños de servicio 
+										span(class="obligatorio") *
+									td
+
+										input(type="number" required="true" name="baños_serv" id="baños_serv")
+								tr
+									td(style="width:300px;")
+										label(for="habitaciones") Habitaciones 
+										span(class="obligatorio") *
+									td
+
+										input(type="number" required="true" name="habitaciones" id="habitaciones")
+								tr
+									td(style="width:300px;")
+										label(for="h_serv") Hab. de servicio 
+										span(class="obligatorio") *
+									td
+
+										input(type="number" required="true" name="h_serv" id="h_serv")
+								tr
+									td(style="width:300px;")
+										label(for="estacionamientos") Estacionamientos 
+										span(class="obligatorio") *
+									td
+
+										input(type="number" required="true" name="estacionamientos" id="estacionamientos")
+								tr
+									td(style="width:150px;")
+										label(for="antiguedad") Antiguedad(años)
+										span(class="obligatorio") *
+									td
+										
+										input(type="number" required="true" form="subir" name="antiguedad" id="antiguedad")
+								
+								tr
+									td(style="width:150px;")
+										label(for="m_terreno") M² Terreno 
+										span(class="obligatorio") *
+									td
+										
+										input(type="number" required="true" name="m_terreno" id="m_terreno")
+								
+								tr
+									td(style="width:150px;")
+										label(for="m_construcccion") M² Construcción 
+										span(class="obligatorio") *
+									td
+										
+										input(type="number" required="true" name="m_construcccion" id="m_construcccion")
+					div(class="flexGrid contenedor2")
+						p(class="sbt-3") Características adicionales
+							div(class="flexGrid")
+								table(class="items-nuevo")
+									tr
+										td(style="width:150px;")
+											label(for="ln_tlf") Lineas Telefónicas
+										td
+											
+											input(type="number" name="ln_tlf" id="ln_tlf")
+									tr
+										td(style="width:150px;")
+											label(for="pisos_cuartos") Pisos (cuartos)
+										td
+											
+											input(type="text" name="pisos_cuartos" id="pisos_cuartos")
+									tr
+										td(style="width:150px;")
+											label(for="pisos_sociales") Pisos (áreas soci.)
+										td
+											
+											input(type="text" name="pisos_sociales" id="pisos_sociales")
+									tr
+										td(style="width:150px;")
+											label(for="a_a") A/Acondicionado
+										td
+											
+											input(type="number" name="a_a" id="a_a")
+									tr
+										td(style="width:300px;")
+											label(for="cocina_emp") Cocina empotrada
+										td
+											
+											input(type="checkbox" value=1 name="cocina_emp" id="cocina_emp")
+									tr
+										td(style="width:300px;")
+											label(for="estudio") Estudio Biblioteca
+										td
+											
+											input(type="checkbox" value=1  name="estudio" id="estudio")
+									tr
+										td(style="width:300px;")
+											label(for="jardines") Jardines
+										td
+											
+											input(type="checkbox"  value=1 name="jardines" id="jardines")
+									tr
+										td(style="width:300px;")
+											label(for="Planta_eléctrica") Planta eléctrica
+										td
+											
+											input(type="checkbox"  value=1 name="Planta_eléctrica" id="Planta_eléctrica")
+									tr
+										td(style="width:300px;")
+											label(for="cable") Tv por cable
+										td
+											
+											input(type="checkbox"  value=1 name="cable" id="cable")
+
+									tr
+										td(style="width:300px;")
+											label(for="rejas") Rejas de seguridad
+										td
+											
+											input(type="checkbox"  value=1 name="rejas" id="rejas")
+								
+					div(class="flexGrid contenedor3")
+							
+							
+						table(class="items-nuevo")
+							tr
+								td(style="width:300px;")
+									label(for="vestier") Vestier
+								td
+									
+									input(type="checkbox"  value=1 name="vestier" id="vestier")
+							tr
+								td(style="width:300px;")
+									label(for="estar") Sala de estar
+								td
+									
+									input(type="checkbox" value=1  name="estar" id="estar")
+							tr
+								td(style="width:300px;")
+									label(for="jacuzzi") Jacuzzi
+								td
+									
+									input(type="checkbox"  value=1 name="jacuzzi" id="jacuzzi")
+							tr
+								td(style="width:300px;")
+									label(for="piscina") Piscina
+								td
+									
+									input(type="checkbox"  value=1 name="piscina" id="piscina")
+							tr
+								td(style="width:300px;")
+									label(for="sauna") Sauna
+								td
+									
+									input(type="checkbox"  value=1 name="sauna" id="sauna")
+							tr
+								td(style="width:300px;")
+									label(for="cerrado") Conjunto cerrado
+								td
+									
+									input(type="checkbox"  value=1 name="cerrado" id="cerrado")
+							tr
+								td(style="width:300px;")
+									label(for="vig_priv") Vigilancia privada
+								td
+									
+									input(type="checkbox" value=1  name="vig_priv" id="vig_priv")
+				div(class="flexGrid border")
+				
+					div(class="flexGrid contenedor2")
+						p(class="sbt-3") Detalles de interés
+							table(class="items-nuevo")
+								tr
+									td(style="width:300px;")
+										label(for="distribucion") Buena Distribución
+									td
+										
+										input(type="checkbox" value=1  name="distribucion" id="distribucion")
+								tr
+									td(style="width:300px;")
+										label(for="desocupado") Desocupado
+									td
+										
+										input(type="checkbox"  value=1 name="desocupado" id="desocupado")
+								tr
+									td(style="width:300px;")
+										label(for="ubicacion") Excelente ubicación
+									td
+										
+										input(type="checkbox" value=1  name="ubicacion" id="ubicacion")
+								tr
+									td(style="width:300px;")
+										label(for="ejec") Ideal para ejecutivos
+									td
+										
+										input(type="checkbox"  value=1 name="ejec" id="ejec")
+								tr
+									td(style="width:300px;")
+										label(for="remodelada") Remodelada
+									td
+										
+										input(type="checkbox"  value=1 name="remodelada" id="remodelada")
+								tr
+									td(style="width:300px;")
+										label(for="tranquila") Zona tranquila
+									td
+										
+										input(type="checkbox" value=1  name="tranquila" id="tranquila")
+								tr
+									td(style="width:300px;")
+										label(for="montaña") Clima de montaña
+									td
+										
+										input(type="checkbox" value=1  name="montaña" id="montaña")
+								tr
+									td(style="width:300px;")
+										label(for="espacioso") Espacioso
+									td
+										
+										input(type="checkbox" value=1  name="espacioso" id="espacioso")
+								tr
+									td(style="width:300px;")
+										label(for="vista") Excelente vista
+									td
+										
+										input(type="checkbox"  value=1 name="vista" id="vista")
+								tr
+									td(style="width:300px;")
+										label(for="listo") Listo para mudarse
+									td
+										
+										input(type="checkbox"  value=1 name="listo" id="listo")
+					div(class="flexGrid contenedor3")
+						
+						table(class="items-nuevo")
+							tr
+								td(style="width:300px;")
+									label(for="cond_eco") Condominio económico
+								td
+									
+									input(type="checkbox"  value=1 name="cond_eco" id="cond_eco")
+							tr
+								td(style="width:300px;")
+									label(for="facil_acceso") Fácil acceso (Av. Cll y/o autopistas)
+								td
+									
+									input(type="checkbox"  value=1 name="facil_acceso" id="facil_acceso")
+							tr
+								td(style="width:300px;")
+									label(for="bonito") Muy bonito
+								td
+									
+									input(type="checkbox"  value=1 name="bonito" id="bonito")
+							tr
+								td(style="width:300px;")
+									label(for="oportunidad") Excelente oportunidad
+								td
+									
+									input(type="checkbox"  value=1 name="oportunidad" id="oportunidad")
+				div(class="flexGrid border")
+				
+					div(class="flexGrid contenedor1")
+						p(class="sbt-3") Cercanías a menos de dos cuadras
+							table(class="items-nuevo")
+								tr
+									td(style="width:300px;")
+										label(for="abasto") Abasto
+									td
+										
+										input(type="checkbox"  value=1 name="abasto" id="abasto")
+								tr
+									td(style="width:300px;")
+										label(for="metro") Estacion de metro
+									td
+										
+										input(type="checkbox"  value=1 name="metro" id="metro")
+								tr
+									td(style="width:300px;")
+										label(for="panaderia") Panadería
+									td
+										
+										input(type="checkbox"  value=1 name="panaderia" id="panaderia")
+								tr
+									td(style="width:300px;")
+										label(for="lavanderia") Lavandería
+									td
+										
+										input(type="checkbox"  value=1 name="lavanderia" id="lavanderia")
+								tr
+									td(style="width:300px;")
+										label(for="c_c") Cantro comercial
+									td
+										
+										input(type="checkbox"  value=1 name="c_c" id="c_c")
+								tr
+									td(style="width:300px;")
+										label(for="farmacia") Farmacia
+									td
+										
+										input(type="checkbox"  value=1 name="farmacia" id="farmacia")
+								tr
+									td(style="width:300px;")
+										label(for="supermercado") Supermercado
+									td
+										
+										input(type="checkbox"  value=1 name="supermercado" id="supermercado")
+								tr
+									td(style="width:300px;")
+										label(for="colegio") Colegio
+									td
+										
+										input(type="checkbox"  value=1 name="colegio" id="colegio")
+								tr
+									td(style="width:300px;")
+										label(for="universidad") Universidad
+									td
+										
+										input(type="checkbox"  value=1 name="universidad" id="universidad")
+								tr
+									td(style="width:300px;")
+										label(for="canchas") Canchas deportivas
+									td
+										
+										input(type="checkbox" form="subir" value=1 ng-model="formData.canchas" name="canchas" id="canchas")
+							
+					div(class="flexGrid contenedor2")
+						p(class="sbt-3") Comentarios
+						textarea(style="width:514px; height:174px" name="comentario")          
+				input(type="submit" form="subir" class="btn-1" ng-click="createTodo()" value="Publicar")            
+

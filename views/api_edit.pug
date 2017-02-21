@@ -1,0 +1,461 @@
+extends api_layout
+block contenido
+    section(id='seccion')
+        form(action="/api/post" method="post" id="subir" name="subir" )
+            div(class="flexGrid")
+                p(class="tlt-1") Editar datos del inmueble
+                p(class="sbt-3") Selecciona imagenes
+                div(ng-controller="MainController")
+                    element(nv-file-drop='' uploader='uploader' style="width:200px;height:200px; border: 2px dashed red" )
+
+                    
+                    input(type='file', nv-file-select='', uploader='uploader')
+                    br
+                    ul
+                    li(ng-repeat='item in uploader.queue')
+                        | Name: 
+                        span(ng-bind='item.file.name')
+                        br
+                        button(ng-click='item.upload()') upload
+
+                                                
+
+
+
+
+
+
+                div(class="flexGrid")
+                    div(class='addImg-med')
+                    div(class='addImg-med')
+                    div(class='addImg-med')
+                    div(class='addImg-med')
+                    div(class='addImg-med')
+                    div(class='addImg-med')
+                    div(class='addImg-med')
+                    div(class='addImg-med') 
+            
+            div(class="flexGrid border")
+                div(class="flexGrid contenedor1 fullAncho")
+                    p(class="sbt-3") Ubicación
+                    table(class="items-nuevo")
+                        
+                        tr
+                            td(style="width:136px;")
+                                label(for="estado") Estado
+                                span(class="obligatorio") *
+                            td
+                                select(name="categoria" required="true" id="categoria")
+                                    option(value="" disabled="disabled") Seleccione
+                                    option(value=""+post_unique.estado+"" selected="selected") #{post_unique.estado}
+                                    option(value="amazonas" class="text-capitalize") amazonas
+                                    option(value="anzoátegui" class="text-capitalize") anzoátegui
+                                    option(value="apure" class="text-capitalize") apure
+                                    option(value="aragua" class="text-capitalize") aragua
+                                    option(value="barinas" class="text-capitalize") barinas
+                                    option(value="bolívar" class="text-capitalize") bolívar
+                                    option(value="carabobo" class="text-capitalize") carabobo
+                                    option(value="cojedes" class="text-capitalize") cojedes
+                                    option(value="delta amacuro" class="text-capitalize") delta amacuro
+                                    option(value="distrito capital" class="text-capitalize") distrito capital
+                                    option(value="falcón" class="text-capitalize") falcón
+                                    option(value="guárico" class="text-capitalize") guárico
+                                    option(value="lara" class="text-capitalize") lara
+                                    option(value="mérida" class="text-capitalize") mérida
+                                    option(value="miranda" class="text-capitalize") miranda
+                                    option(value="monagas" class="text-capitalize") monagas
+                                    option(value="nueva esparta" class="text-capitalize") nueva esparta
+                                    option(value="portuguesa" class="text-capitalize") portuguesa
+                                    option(value="sucre" class="text-capitalize") sucre
+                                    option(value="táchira" class="text-capitalize") táchira
+                                    option(value="trujillo" class="text-capitalize") trujillo
+                                    option(value="vargas" class="text-capitalize") vargas
+                                    option(value="yaracuy" class="text-capitalize") yaracuy
+                                    option(value="zulia" class="text-capitalize") zulia
+                        tr
+                            td(style="width:136px;")
+                                label(for="ciudad") Ciudad
+                                span(class="obligatorio") *
+                            td
+                                input(type="text" name="ciudad" required="true" id="ciudad" value=""+post_unique.ciudad+"")
+                        tr
+                            td(style="width:136px;")
+                                label(for="municipio") Municipio
+                                span(class="obligatorio") *
+                            td
+                                input(type="text" name="municipio" required="true" id="municipio" value=""+post_unique.municipio+"")
+                        tr
+                            td(style="width:136px;")
+                                label(for="urbanizacion") Urbanización
+                                span(class="obligatorio") *
+                            td
+                                input(type="text" name="urbanizacion" required="true" id="urbanizacion" value=""+post_unique.urbanizacion+"")
+                        tr
+                            td(style="width:136px;")
+                                label(for="precio") Precio
+                                span(class="obligatorio") *
+                            td
+                                input(type="number" name="precio" required="true" id="precio" value=""+post_unique.precio+"")
+                        
+
+                div(class="flexGrid contenedor1")
+                    p(class="sbt-3") Características principales
+                        
+                        table(class="items-nuevo")
+                            tr
+                                td(style="width:150px;")
+                                    label(for="categoria" class="") Categoría
+                                    span(class="obligatorio") *
+                                td
+                                    
+                                    select(name="categoria" required="true" class="f-rigth" id="categoria")
+                                        option(value="" disabled="disabled") Tipo
+                                        option(value=""+post_unique.categoria+"" selected="selected") #{post_unique.categoria}
+                                        option(value="Apartamento") Apartamento
+                                        option(value="Casa") Casa
+                                        option(value="Locale") Locale
+                                        option(value="Terreno") Terreno
+                                        option(value="townhouse") Townhouse
+                            tr     
+                                td(style="width:150px;")
+                                    label(for="tipo") Tipo
+                                    span(class="obligatorio") *
+                                td
+                                    
+                                    select(name="tipo" required="true"  id="tipo")
+                                        option(value="" disabled="disabled") Seleccione
+                                        option(value=""+post_unique.tipo+"" selected="selected") #{post_unique.tipo}
+                                        option(value="Alquiler") Alquiler
+                                        option(value="Venta") Venta
+                            tr
+                                td(style="width:300px;")
+                                    label(for="baños") Baños
+                                    span(class="obligatorio") *
+                                td
+
+                                    input(type="number"  required="true" name="baños" id="baños" value=""+post_unique.banos+"")
+                            tr
+                                td(style="width:300px;")
+                                    label(for="baños_serv" class="") Baños de servicio 
+                                    span(class="obligatorio") *
+                                td
+
+                                    input(type="number" required="true" name="baños_serv" id="baños_serv" value=""+post_unique.banos_serv+"")
+                            tr
+                                td(style="width:300px;")
+                                    label(for="habitaciones") Habitaciones 
+                                    span(class="obligatorio") *
+                                td
+
+                                    input(type="number" required="true" name="habitaciones" id="habitaciones" value=""+post_unique.habitaciones+"")
+                            tr
+                                td(style="width:300px;")
+                                    label(for="h_serv") Hab. de servicio 
+                                    span(class="obligatorio") *
+                                td
+
+                                    input(type="number" required="true" name="h_serv" id="h_serv" value=""+post_unique.h_serv+"")
+                            tr
+                                td(style="width:300px;")
+                                    label(for="estacionamientos") Estacionamientos 
+                                    span(class="obligatorio") *
+                                td
+
+                                    input(type="number" required="true" name="estacionamientos" id="estacionamientos" value=""+post_unique.estacionamientos+"")
+                            tr
+                                td(style="width:150px;")
+                                    label(for="antiguedad") Antiguedad(años)
+                                    span(class="obligatorio") *
+                                td
+                                    
+                                    input(type="number" required="true" form="subir" name="antiguedad" id="antiguedad" value=""+post_unique.antiguedad+"")
+                            
+                            tr
+                                td(style="width:150px;")
+                                    label(for="m_terreno") M² Terreno 
+                                    span(class="obligatorio") *
+                                td
+                                    
+                                    input(type="number" required="true" name="m_terreno" id="m_terreno" value=""+post_unique.m_terreno+"")
+                            
+                            tr
+                                td(style="width:150px;")
+                                    label(for="m_construcccion") M² Construcción 
+                                    span(class="obligatorio") *
+                                td
+                                    
+                                    input(type="number" required="true" name="m_construcccion" id="m_construcccion" value=""+post_unique.m_construcccion+"")
+                div(class="flexGrid contenedor2")
+                    p(class="sbt-3") Características adicionales
+                        div(class="flexGrid")
+                            table(class="items-nuevo")
+                                tr
+                                    td(style="width:150px;")
+                                        label(for="ln_tlf") Lineas Telefónicas
+                                    td
+                                        
+                                        input(type="number" name="ln_tlf" id="ln_tlf" value=""+post_unique.ln_tlf+"")
+                                tr
+                                    td(style="width:150px;")
+                                        label(for="pisos_cuartos") Pisos (cuartos)
+                                    td
+                                        
+                                        input(type="text" name="pisos_cuartos" id="pisos_cuartos" value=""+post_unique.pisos_cuartos+"")
+                                tr
+                                    td(style="width:150px;")
+                                        label(for="pisos_sociales") Pisos (áreas soci.)
+                                    td
+                                        
+                                        input(type="text" name="pisos_sociales" id="pisos_sociales" value=""+post_unique.pisos_sociales+"")
+                                tr
+                                    td(style="width:150px;")
+                                        label(for="a_a") A/Acondicionado
+                                    td
+                                        
+                                        input(type="number" name="a_a" id="a_a" value=""+post_unique.a_a+"")
+                                tr
+                                    td(style="width:300px;")
+                                        label(for="cocina_emp") Cocina empotrada
+                                    td
+                                        - if(post_unique.cocina_emp === false)
+                                        input(type="checkbox" value=1 name="cocina_emp" id="cocina_emp" unchecked)
+                                tr
+                                    td(style="width:300px;")
+                                        label(for="estudio") Estudio Biblioteca
+                                    td
+                                        - if(post_unique.estudio === false)
+                                        input(type="checkbox" value=1  name="estudio" id="estudio" unchecked)
+                                tr
+                                    td(style="width:300px;")
+                                        label(for="jardines") Jardines
+                                    td
+                                        - if(post_unique.jardines === false)
+                                        input(type="checkbox"  value=1 name="jardines" id="jardines" unchecked)
+                                tr
+                                    td(style="width:300px;")
+                                        label(for="Planta_eléctrica") Planta eléctrica
+                                    td
+                                        - if(post_unique.Planta_eléctrica === false)
+                                        input(type="checkbox"  value=1 name="Planta_eléctrica" id="Planta_eléctrica" unchecked)
+                                tr
+                                    td(style="width:300px;")
+                                        label(for="cable") Tv por cable
+                                    td
+                                        - if(post_unique.cable === false)
+                                        input(type="checkbox"  value=1 name="cable" id="cable" unchecked)
+
+                                tr
+                                    td(style="width:300px;")
+                                        label(for="rejas") Rejas de seguridad
+                                    td
+                                        - if(post_unique.rejas === false)
+                                        input(type="checkbox"  value=1 name="rejas" id="rejas" unchecked)
+                            
+                div(class="flexGrid contenedor3")
+                        
+                        
+                    table(class="items-nuevo")
+                        tr
+                            td(style="width:300px;")
+                                label(for="vestier") Vestier
+                            td
+                                - if(post_unique.vestier === false)
+                                input(type="checkbox"  value=1 name="vestier" id="vestier" unchecked)
+                        tr
+                            td(style="width:300px;")
+                                label(for="estar") Sala de estar
+                            td
+                                - if(post_unique.estar === false)
+                                input(type="checkbox" value=1  name="estar" id="estar" unchecked)
+                        tr
+                            td(style="width:300px;")
+                                label(for="jacuzzi") Jacuzzi
+                            td
+                                - if(post_unique.jacuzzi === false)
+                                input(type="checkbox"  value=1 name="jacuzzi" id="jacuzzi" unchecked)
+                        tr
+                            td(style="width:300px;")
+                                label(for="piscina") Piscina
+                            td
+                                - if(post_unique.piscina === false)
+                                input(type="checkbox"  value=1 name="piscina" id="piscina" unchecked)
+                        tr
+                            td(style="width:300px;")
+                                label(for="sauna") Sauna
+                            td
+                                - if(post_unique.sauna === false)
+                                input(type="checkbox"  value=1 name="sauna" id="sauna" unchecked)
+                        tr
+                            td(style="width:300px;")
+                                label(for="cerrado") Conjunto cerrado
+                            td
+                                - if(post_unique.cerrado === false)
+                                input(type="checkbox"  value=1 name="cerrado" id="cerrado" unchecked)
+                        tr
+                            td(style="width:300px;")
+                                label(for="vig_priv") Vigilancia privada
+                            td
+                                - if(post_unique.vig_priv === false)
+                                input(type="checkbox" value=1  name="vig_priv" id="vig_priv" unchecked)
+            div(class="flexGrid border")
+            
+                div(class="flexGrid contenedor2")
+                    p(class="sbt-3") Detalles de interés
+                        table(class="items-nuevo")
+                            tr
+                                td(style="width:300px;")
+                                    label(for="distribucion") Buena Distribución
+                                td
+                                    - if(post_unique.distribucion === false)
+                                    input(type="checkbox" value=1  name="distribucion" id="distribucion" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="desocupado") Desocupado
+                                td
+                                    - if(post_unique.desocupado === false)
+                                    input(type="checkbox"  value=1 name="desocupado" id="desocupado" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="ubicacion") Excelente ubicación
+                                td
+                                    - if(post_unique.ubicacion === false)
+                                    input(type="checkbox" value=1  name="ubicacion" id="ubicacion" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="ejec") Ideal para ejecutivos
+                                td
+                                    - if(post_unique.ejec === false)
+                                    input(type="checkbox"  value=1 name="ejec" id="ejec" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="remodelada") Remodelada
+                                td
+                                    - if(post_unique.remodelada === false)
+                                    input(type="checkbox"  value=1 name="remodelada" id="remodelada" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="tranquila") Zona tranquila
+                                td
+                                    - if(post_unique.tranquila === false)
+                                    input(type="checkbox" value=1  name="tranquila" id="tranquila" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="montaña") Clima de montaña
+                                td
+                                    - if(post_unique.montana === false)
+                                    input(type="checkbox" value=1  name="montaña" id="montaña" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="espacioso") Espacioso
+                                td
+                                    - if(post_unique.espacioso === false)
+                                    input(type="checkbox" value=1  name="espacioso" id="espacioso" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="vista") Excelente vista
+                                td
+                                    - if(post_unique.vista === false)
+                                    input(type="checkbox"  value=1 name="vista" id="vista" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="listo") Listo para mudarse
+                                td
+                                    - if(post_unique.listo === false)
+                                    input(type="checkbox"  value=1 name="listo" id="listo" unchecked)
+                div(class="flexGrid contenedor3")
+                    
+                    table(class="items-nuevo")
+                        tr
+                            td(style="width:300px;")
+                                label(for="cond_eco") Condominio económico
+                            td
+                                - if(post_unique.cond_eco === false)
+                                input(type="checkbox"  value=1 name="cond_eco" id="cond_eco" unchecked)
+                        tr
+                            td(style="width:300px;")
+                                label(for="facil_acceso") Fácil acceso (Av. Cll y/o autopistas)
+                            td
+                                - if(post_unique.facil_acceso === false)
+                                input(type="checkbox"  value=1 name="facil_acceso" id="facil_acceso" unchecked)
+                        tr
+                            td(style="width:300px;")
+                                label(for="bonito") Muy bonito
+                            td
+                                - if(post_unique.bonito === false)
+                                input(type="checkbox"  value=1 name="bonito" id="bonito" unchecked)
+                        tr
+                            td(style="width:300px;")
+                                label(for="oportunidad") Excelente oportunidad
+                            td
+                                - if(post_unique.oportunidad === false)
+                                input(type="checkbox"  value=1 name="oportunidad" id="oportunidad" unchecked)
+            div(class="flexGrid border")
+            
+                div(class="flexGrid contenedor1")
+                    p(class="sbt-3") Cercanías a menos de dos cuadras
+                        table(class="items-nuevo")
+                            tr
+                                td(style="width:300px;")
+                                    label(for="abasto") Abasto
+                                td
+                                    - if(post_unique.abasto === false)
+                                    input(type="checkbox"  value=1 name="abasto" id="abasto" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="metro") Estacion de metro
+                                td
+                                    - if(post_unique.metro === false)
+                                    input(type="checkbox"  value=1 name="metro" id="metro" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="panaderia") Panadería
+                                td
+                                    - if(post_unique.panaderia === false)
+                                    input(type="checkbox"  value=1 name="panaderia" id="panaderia" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="lavanderia") Lavandería
+                                td
+                                    - if(post_unique.lavanderia === false)
+                                    input(type="checkbox"  value=1 name="lavanderia" id="lavanderia" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="c_c") Cantro comercial
+                                td
+                                    - if(post_unique.c_c === false)
+                                    input(type="checkbox"  value=1 name="c_c" id="c_c" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="farmacia") Farmacia
+                                td
+                                    - if(post_unique.farmacia === false)
+                                    input(type="checkbox"  value=1 name="farmacia" id="farmacia" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="supermercado") Supermercado
+                                td
+                                    - if(post_unique.supermercado === false)
+                                    input(type="checkbox"  value=1 name="supermercado" id="supermercado" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="colegio") Colegio
+                                td
+                                    - if(post_unique.colegio === false)
+                                    input(type="checkbox"  value=1 name="colegio" id="colegio" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="universidad") Universidad
+                                td
+                                    - if(post_unique.universidad === false)
+                                    input(type="checkbox"  value=1 name="universidad" id="universidad" unchecked)
+                            tr
+                                td(style="width:300px;")
+                                    label(for="canchas") Canchas deportivas
+                                td
+                                    - if(post_unique.canchas === false)
+                                    input(type="checkbox" form="subir" value=1 ng-model="formData.canchas" name="canchas" id="canchas" unchecked)
+                        
+                div(class="flexGrid contenedor2")
+                    p(class="sbt-3") Comentarios
+                    textarea(style="width:514px; height:174px" name="comentario")= post_unique.comentario
+            input(type="submit" form="subir" class="btn-1" ng-click="createTodo()")            

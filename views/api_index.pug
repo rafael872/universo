@@ -1,0 +1,13 @@
+extends api_layout
+block contenido
+	.container
+		div(class="flexGrid")
+			a(href="/api/inmuebles")
+				div(class="content_1") 
+					div(class="contador_content") {{post.length}}
+					div(class="nombre_content") Inmuebles
+			div(class="content_2")
+				div(class="contador_content") 2*
+				div(class="nombre_content") Ventas
+			div(class="content_3")
+			 

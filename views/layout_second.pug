@@ -1,0 +1,35 @@
+doctype html
+html(ng-app="app")
+    head
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet" href="/css/styles.css")
+        //link(rel="stylesheet" href="/css/framework-css.css")
+        link(rel="stylesheet" href="/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/css/font-awesome.min.css")     
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js')
+        script(src="/angular-file-upload/dist/angular-file-upload.js")
+        script(src="/js/bootstrap.min.js")
+        script(src="/angular/core.js")
+    body(ng-controller="MainController")
+        nav
+            .container
+                .row
+                    .col-md-4
+                        a(href="/")
+                            img(src='/images/logo_principal.png')
+                    .col-md-4
+                        form(action="/search" method="post" class="p-20")
+                            input(type="text" class="buscador-index-top" placeholder="Urbanización, sector o ciudad")
+                            input(type="submit" class="btn-buscador-index-top" value="")
+                    .col-md-4  
+                        div(class='menu_1 posicion_menu_header')  
+                            div Contacto                                      
+        block contenido
+
+        footer
+            .container
+                .row
+                    .col-md-12
+                        p Diseño y desarrollo Web - Rafael D. Alvarez - tlf +58 412-509.68.89 - Rafael_alvarez_123@hotmail.com
+        script(src="/angular/angular-pagination.js")

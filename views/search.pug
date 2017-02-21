@@ -1,0 +1,142 @@
+extends layout
+block contenido
+	form(name="estado_search", id="estado_search" action="/search" method="post" )
+		.container
+			.row.mTop-110
+				.col-md-2.grid-filter.mBottom-20
+					.col-md-12.no-pg
+						h5.no-mg.text-capitalize filtros
+							
+							ul.link-filter-search
+								form(name="estado_search4", id="estado_search4" action="/search" method="post")
+									
+									li 	
+										
+										if estado !== undefined && estado !== null && estado !== ''
+											
+											div(class="filtro_class")
+												!=estado
+												input(type="submit" class="boton_x" value=' x' form="estado_search")
+											
+											input(type="hidden" value=null name="estado" id="estado" form="estado_search4")
+											input(type="hidden" value=tipo name="tipo" id="tipo" form="estado_search4")
+											input(type="hidden" value=search name="search" id="search" form="estado_search4")
+								
+									
+							ul.link-filter-search
+								form(name="estado_search5", id="estado_search5" action="/search" method="post")
+																	
+								
+									li 	
+										
+										if tipo !== undefined && tipo !== null && tipo !== ''
+											div(class="filtro_class")
+												!=tipo
+												input(type="submit" value=' x' class="boton_x" form="estado_search5")
+											
+											input(type="hidden" value=null name="tipo" id="tipo" form="estado_search5")
+											input(type="hidden" value=estado name="estado" id="estado" form="estado_search5")
+											input(type="hidden" value=search name="search" id="search" form="estado_search5")
+											
+											
+										
+					.col-md-12.no-pg
+						if estado == undefined || estado == "" 
+							h5.no-mg.text-capitalize estados
+							
+							ul.link-filter-search
+
+								li
+									input(type="submit" value="amazonas" name="estado" id="estado" form="estado_search")
+									
+								li
+									input(type="submit" value="anzoategui" name="estado" id="estado" form="estado_search")
+									
+								li
+									input(type="submit" value="apure" name="estado" id="estado" form="estado_search")
+									
+								li
+									input(type="submit" value="aragua" name="estado" id="estado" form="estado_search")
+								
+								li
+									input(type="submit" value="barinas" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="bolivar" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="carabobo" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="cojedes" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="delta amacuro" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="distrito capital" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="falcon" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="guarico" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="lara" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="merida" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="miranda" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="monagas" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="nueva esparta" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="portuguesa" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="sucre" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="tachira" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="trujillo" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="vargas" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="yaracuy" name="estado" id="estado" form="estado_search")
+								li
+									input(type="submit" value="zulia" name="estado" id="estado" form="estado_search")
+						input(type="hidden" value=tipo name="tipo" id="tipo" form="estado_search")
+						input(type="hidden" value=search name="search" id="search" form="estado_search")
+					.col-md-12.no-pg
+						if tipo == undefined || tipo==""
+							h5.no-mg.text-capitalize tipo
+							ul.link-filter-search
+								form(name="estado_search3", id="estado_search3" action="/search" method="post")
+									li
+										input(type="submit" value="Venta" name="tipo" id="tipo" form="estado_search3")
+									li
+										input(type="submit" value="Alquiler" name="tipo" id="tipo" form="estado_search3")
+										input(type="hidden" value=estado name="estado" id="estado" form="estado_search3")
+										input(type="hidden" value=search name="search" id="search" form="estado_search3")
+				.col-md-10
+					div(ng-controller="search" class="col-md-4 pLeft-0" ng-pagination="posts in post" ng-pagination-size="18")
+						a(href="/post/{{posts._id}}")
+							.grid-mini-post
+								.img_item
+								.col-md-12.info-mini-post
+									.row
+										.col-md-12.price
+											p Bs. {{posts.precio}}
+									.row
+										.col-md-12.type
+											p {{post[0].categoria}} / {{posts.tipo}}
+									.row
+										.col-md-12.address
+											p {{posts.estado}}, {{posts.ciudad}}, {{posts.urbanizacion}}
+									.row
+										.col-md-3
+											.item_ico_habitaciones
+												p(class="num_ico_item") {{posts.habitaciones}}
+										.col-md-3
+											.item_ico_banos
+												p(class="num_ico_item") {{posts.banos}}
+										.col-md-3
+											.item_ico_terreno
+												p(class="num_ico_item") {{posts.m_terreno}}
+			.row.mBottom-20
+				.col-md-10.col-md-offset-2
+					center
+						ng-pagination-control(pagination-id="post")

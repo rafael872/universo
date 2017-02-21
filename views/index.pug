@@ -1,0 +1,104 @@
+extends layout
+block contenido
+
+    header#index(style="margin-top:92px")
+        .container
+            .row
+                .col-md-6.col-md-offset-3
+                    .grid-buscador-index
+                        .row.mBottom-20
+                            .col-md-12
+                                h1.text-uppercase.text-center busca tu inmueble
+                        .row
+                            .col-md-12
+                                form(action="/search" method="post" class="form-search-index")
+                                    .row
+                                        .col-md-6.mBottom-20
+                                            select(name="estado" id="estado")
+                                                option(value="" selected="selected" disabled="disabled") Seleccione
+                                                option(value="amazonas" class="text-capitalize") amazonas
+                                                option(value="anzoátegui" class="text-capitalize") anzoátegui
+                                                option(value="apure" class="text-capitalize") apure
+                                                option(value="aragua" class="text-capitalize") aragua
+                                                option(value="barinas" class="text-capitalize") barinas
+                                                option(value="bolívar" class="text-capitalize") bolívar
+                                                option(value="carabobo" class="text-capitalize") carabobo
+                                                option(value="cojedes" class="text-capitalize") cojedes
+                                                option(value="delta amacuro" class="text-capitalize") delta amacuro
+                                                option(value="distrito capital" class="text-capitalize") distrito capital
+                                                option(value="falcón" class="text-capitalize") falcón
+                                                option(value="guárico" class="text-capitalize") guárico
+                                                option(value="lara" class="text-capitalize") lara
+                                                option(value="mérida" class="text-capitalize") mérida
+                                                option(value="miranda" class="text-capitalize") miranda
+                                                option(value="monagas" class="text-capitalize") monagas
+                                                option(value="nueva esparta" class="text-capitalize") nueva esparta
+                                                option(value="portuguesa" class="text-capitalize") portuguesa
+                                                option(value="sucre" class="text-capitalize") sucre
+                                                option(value="táchira" class="text-capitalize") táchira
+                                                option(value="trujillo" class="text-capitalize") trujillo
+                                                option(value="vargas" class="text-capitalize") vargas
+                                                option(value="yaracuy" class="text-capitalize") yaracuy
+                                                option(value="zulia" class="text-capitalize") zulia
+                                        .col-md-6.mBottom-20
+                                            select(name="categoria" id="categoria")
+                                                option(value="" selected="selected" disabled="disabled") Tipo
+                                                option(value="Apartamento") Apartamento
+                                                option(value="Casa") Casa
+                                                option(value="Local") Local
+                                                option(value="Terreno") Terreno
+                                                option(value="Townhouse") Townhouse
+                                    .row
+                                        .col-md-12
+                                            input(type="text" class="buscador-index" placeholder="Urbanización, sector o ciudad")
+                                            input(type="submit" class="btn-buscador-index" value="")
+
+
+
+    section#lates-posts
+        .container
+            .row
+                .col-md-12
+                    h3.title-section Últimos añadidos
+            .row
+                .col-md-12
+                    div(class="col-md-3 pLeft-0 grid-posting" ng-repeat="posts in post | limitTo:4")
+                        a(href="/post/{{posts._id}}")
+                            .grid-mini-post
+                                
+                                img(class="img_item" src="/uploads/{{posts._id}}_1.{{posts.ext_1}}")
+                                .col-md-12.info-mini-post
+                                    .row
+                                        .col-md-12.price
+                                            p Bs. {{posts.precio}}
+                                    .row
+                                        .col-md-12.type.text-capitalize
+                                            p {{posts.categoria}} / {{posts.tipo}}
+                                    .row
+                                        .col-md-12.address.text-capitalize
+                                            p {{posts.estado}}, {{posts.ciudad}}, {{posts.urbanizacion}}
+                                    .row
+                                        .col-md-3
+                                            .item_ico_habitaciones
+                                                p(class="num_ico_item") {{posts.habitaciones}}
+                                        .col-md-3
+                                            .item_ico_banos
+                                                p(class="num_ico_item") {{posts.banos}}
+                                        .col-md-3
+                                            .item_ico_terreno
+                                                p(class="num_ico_item") {{posts.m_terreno}}
+
+    section#contact-index
+        .container
+            .row
+                .col-md-4.mBottom-20
+                    .row.mBottom-20
+                        .col-md-12
+                            h2 ¿Deseas publicar tu propiedad?
+                            p Contáctanos y a la brevedad posible te mostraremos cómo formar 
+                                b El Universo Inmbiliario de Venezuela.
+                    .row
+                        .col-md-12
+                            a(href="/contact") Contáctanos
+                .col-md-8
+                    img(src='/images/mapa.png')

@@ -1,0 +1,70 @@
+extends api_layout
+block contenido
+    //link(rel='stylesheet', href='https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css')
+    //script(src='https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js')
+    
+    .container
+        .row.mBottom-20
+            .col-md-12
+                h2(style="font-family: 'oswaldregular', sans-serif;") Mis inmuebles
+        .row.mBottom-20
+            .col-md-6
+                .input-group
+                    label.input-group-addon(for="search") Buscar
+                    input.form-control(type='search' placeholder='Ingresa una descripción' style="height:100%;text-align:left;" id="search" maxlength="26" ng-model="search")
+        .row.mBottom-20
+            .col-md-12
+                .grid-inmueble-show(ng-pagination="posts in post | orderBy:'-order' | filter:search" ng-pagination-size="18")
+                    .row
+                        .col-md-1
+                            img(class="img-inmueble-search" src="/uploads/{{posts._id}}_1.{{posts.ext_1}}")
+                            
+                        .col-md-5
+                            .info-inmueble-search
+                                h5 {{posts.estado}}, {{posts.ciudad}}, {{posts.municipio}}, {{posts.urbanizacion}}
+                                p {{posts.tipo}}  /  {{posts.categoria}} / {{posts.date}}
+                        .col-md-3
+                            .price-inmueble-search
+                                h5 Bs. {{posts.precio}}
+                                p 13 visitas
+                        .col-md-3
+                            .btn-controls-inmueble-search
+                                span(class="pausar_controls_item_mostar") Pausar
+                                a(class="editar_controls_item_mostar" href="/api/post/{{posts._id}}/edit") Editar
+                                span(class="eliminar_controls_item_mostar" ng-click="deletePost(posts._id)") Eliminar
+        .row.mBottom-20
+            .col-md-6.col-md-offset-3
+                center
+                    ng-pagination-control(pagination-id="post")
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+                //- div(class="item_mostrar" ng-repeat="posts in post | orderBy:'-order' | filter:search")
+                    
+                //-     div(class="img_item_mostrar")
+                //-     div(class="info_item_mostrar")
+                //-         p(class="dir_info_item_mostar")
+                //-             |{{posts.estado +", "+ posts.ciudad+", "+ posts.municipio+", "+ posts.urbanizacion}}
+                //-         p(class="ext_info_item_mostar") {{posts.tipo}}  /  {{posts.categoria}} / {{posts.date}}
+                //-     div(class="value_item_mostrar")
+                //-         p(class="bs_value_item_mostar") Bs. {{posts.precio}}
+                //-         p(class="visitas_value_item_mostar") 15 visitas
+                //-     div(class="controls_item_mostrar")
+                //-         span(class="pausar_controls_item_mostar") Pausar
+                //-         a(class="editar_controls_item_mostar" href="/api/post/{{posts._id}}/edit") Editar
+                //-         span(class="eliminar_controls_item_mostar" ng-click="deletePost(posts._id)") Eliminar
+
+    
+            
+            
+           
